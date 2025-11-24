@@ -1,6 +1,6 @@
-# GraphQL & REST API - Music Playlist Manager
+# GraphQL, REST & gRPC API - Music Playlist Manager
 
-API completa para gerenciamento de músicas, playlists e usuários, desenvolvida com NestJS, GraphQL e REST, utilizando Supabase como banco de dados PostgreSQL.
+API completa para gerenciamento de músicas, playlists e usuários, desenvolvida com NestJS, GraphQL, REST e gRPC, utilizando Supabase como banco de dados PostgreSQL.
 
 ## 🎯 Sobre o Projeto
 
@@ -10,15 +10,18 @@ Esta API permite gerenciar:
 - **Usuários**: Cadastro de usuários com nome e idade
 - **Relacionamentos**: Associação de músicas a playlists e playlists a usuários
 
-A API oferece duas interfaces:
+A API oferece três interfaces:
 - **GraphQL**: Para consultas flexíveis e eficientes
 - **REST**: Para integração tradicional com endpoints HTTP
+- **gRPC**: Para comunicação de alta performance com Protocol Buffers
 
 ## 🛠️ Tecnologias
 
 - **NestJS** - Framework Node.js
 - **GraphQL** - Query language e runtime
 - **Apollo Server** - Servidor GraphQL
+- **gRPC** - Framework RPC de alta performance
+- **Protocol Buffers** - Serialização de dados
 - **Supabase** - Banco de dados PostgreSQL
 - **TypeScript** - Linguagem de programação
 
@@ -63,6 +66,7 @@ npm run start:prod
 A API estará disponível em:
 - **REST API**: `http://localhost:3000`
 - **GraphQL Playground**: `http://localhost:3000/graphql`
+- **gRPC Server**: `localhost:5000`
 
 ## 📚 Exemplos de Uso
 
@@ -304,6 +308,7 @@ Content-Type: application/json
 Para mais exemplos detalhados, consulte:
 - [Exemplos GraphQL](./GRAPHQL_EXAMPLES.md)
 - [Exemplos REST](./REST_API_EXAMPLES.md)
+- [Exemplos gRPC](./GRPC_EXAMPLES.md)
 
 ## 🧪 Testes
 
@@ -343,9 +348,14 @@ npm run format
 src/
 ├── controllers/      # Controllers REST
 ├── entities/         # Entidades GraphQL
+├── grpc/             # Controllers gRPC
 ├── inputs/           # Inputs para mutations
 ├── resolvers/        # Resolvers GraphQL
 ├── supabase/         # Serviço Supabase
 ├── app.module.ts     # Módulo principal
 └── main.ts           # Entry point
+proto/
+├── user.proto        # Definições gRPC do User
+├── music.proto       # Definições gRPC do Music
+└── playlist.proto    # Definições gRPC do Playlist
 ```

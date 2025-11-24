@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package playlist;
+
+service PlaylistService {
+  rpc FindAll (Empty) returns (PlaylistList) {}
+  rpc FindOne (PlaylistById) returns (Playlist) {}
+  rpc FindMusics (PlaylistById) returns (MusicList) {}
+  rpc FindUsers (PlaylistById) returns (UserList) {}
+  rpc Create (CreatePlaylistRequest) returns (Playlist) {}
+  rpc Update (UpdatePlaylistRequest) returns (Playlist) {}
+  rpc Delete (PlaylistById) returns (DeleteResponse) {}
+  rpc AddMusic (AddMusicToPlaylistRequest) returns (AddMusicResponse) {}
+  rpc RemoveMusic (RemoveMusicFromPlaylistRequest) returns (DeleteResponse) {}
+}
+
+message Empty {}
+
+message Playlist {
+  int32 id = 1;
+  string name = 2;
+}
+
+message PlaylistList {
+  repeated Playlist playlists = 1;
+}
+
+message PlaylistById {
+  int32 id = 1;
+}
+
+message CreatePlaylistRequest {
+  string name = 1;
+}
+
+message UpdatePlaylistRequest {
+  int32 id = 1;
+  optional string name = 2;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message Music {
+  int32 id = 1;
+  string name = 2;
+  string artist = 3;
+}
+
+message MusicList {
+  repeated Music musics = 1;
+}
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message UserList {
+  repeated User users = 1;
+}
+
+message AddMusicToPlaylistRequest {
+  int32 playlistId = 1;
+  int32 musicId = 2;
+}
+
+message AddMusicResponse {
+  bool success = 1;
+  PlaylistMusic data = 2;
+}
+
+message PlaylistMusic {
+  int32 playlistId = 1;
+  int32 musicId = 2;
+}
+
+message RemoveMusicFromPlaylistRequest {
+  int32 playlistId = 1;
+  int32 musicId = 2;
+}

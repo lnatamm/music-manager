@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+  rpc FindAll (Empty) returns (UserList) {}
+  rpc FindOne (UserById) returns (User) {}
+  rpc FindPlaylists (UserById) returns (PlaylistList) {}
+  rpc Create (CreateUserRequest) returns (User) {}
+  rpc Update (UpdateUserRequest) returns (User) {}
+  rpc Delete (UserById) returns (DeleteResponse) {}
+  rpc AddPlaylist (AddPlaylistToUserRequest) returns (AddPlaylistResponse) {}
+  rpc RemovePlaylist (RemovePlaylistFromUserRequest) returns (DeleteResponse) {}
+}
+
+message Empty {}
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message UserList {
+  repeated User users = 1;
+}
+
+message UserById {
+  int32 id = 1;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  int32 age = 2;
+}
+
+message UpdateUserRequest {
+  int32 id = 1;
+  optional string name = 2;
+  optional int32 age = 3;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message Playlist {
+  int32 id = 1;
+  string name = 2;
+}
+
+message PlaylistList {
+  repeated Playlist playlists = 1;
+}
+
+message AddPlaylistToUserRequest {
+  int32 userId = 1;
+  int32 playlistId = 2;
+}
+
+message AddPlaylistResponse {
+  bool success = 1;
+  UserPlaylist data = 2;
+}
+
+message UserPlaylist {
+  int32 userId = 1;
+  int32 playlistId = 2;
+}
+
+message RemovePlaylistFromUserRequest {
+  int32 userId = 1;
+  int32 playlistId = 2;
+}

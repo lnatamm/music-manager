@@ -12,6 +12,9 @@ import { UserResolver } from './resolvers/user.resolver';
 import { MusicController } from './controllers/music.controller';
 import { PlaylistController } from './controllers/playlist.controller';
 import { UserController } from './controllers/user.controller';
+import { UserGrpcController } from './grpc/user.grpc.controller';
+import { MusicGrpcController } from './grpc/music.grpc.controller';
+import { PlaylistGrpcController } from './grpc/playlist.grpc.controller';
 
 @Module({
   imports: [
@@ -31,6 +34,9 @@ import { UserController } from './controllers/user.controller';
     MusicController,
     PlaylistController,
     UserController,
+    UserGrpcController,
+    MusicGrpcController,
+    PlaylistGrpcController,
   ],
   providers: [AppService, MusicResolver, PlaylistResolver, UserResolver],
 })

@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package music;
+
+service MusicService {
+  rpc FindAll (Empty) returns (MusicList) {}
+  rpc FindOne (MusicById) returns (Music) {}
+  rpc Create (CreateMusicRequest) returns (Music) {}
+  rpc Update (UpdateMusicRequest) returns (Music) {}
+  rpc Delete (MusicById) returns (DeleteResponse) {}
+}
+
+message Empty {}
+
+message Music {
+  int32 id = 1;
+  string name = 2;
+  string artist = 3;
+}
+
+message MusicList {
+  repeated Music musics = 1;
+}
+
+message MusicById {
+  int32 id = 1;
+}
+
+message CreateMusicRequest {
+  string name = 1;
+  string artist = 2;
+}
+
+message UpdateMusicRequest {
+  int32 id = 1;
+  optional string name = 2;
+  optional string artist = 3;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
